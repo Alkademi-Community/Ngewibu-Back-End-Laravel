@@ -22,6 +22,7 @@ return new class extends Migration
             $table->tinyInteger('is_liked')
                   ->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
