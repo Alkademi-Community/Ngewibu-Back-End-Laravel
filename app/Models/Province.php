@@ -4,16 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class City extends Model
+class Province extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $guarded = ['id'];
 
-    public function province()
+    /**
+     * Get the cities for the province.
+     */
+    public function cities(): HasMany
     {
-        return $this->belongsTo(Province::class);
+        return $this->hasMany(City::class);
     }
 }
