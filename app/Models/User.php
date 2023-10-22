@@ -35,6 +35,8 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    protected $guarded = ['id'];
+
     /**
      * Get the user's profile.
      *
@@ -53,5 +55,10 @@ class User extends Authenticatable
     public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class);
+    }
+    
+    public function userProfileAttachment(): HasOne
+    {
+        return $this->hasOne(UserProfileAttachment::class);
     }
 }

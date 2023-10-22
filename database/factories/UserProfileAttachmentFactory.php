@@ -6,12 +6,11 @@ use App\Traits\WithFactoryDataCount;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\EventAttachment>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\UserProfileAttachment>
  */
-class EventAttachmentFactory extends Factory
+class UserProfileAttachmentFactory extends Factory
 {
     use WithFactoryDataCount;
-
     /**
      * Define the model's default state.
      *
@@ -19,10 +18,9 @@ class EventAttachmentFactory extends Factory
      */
     public function definition(): array
     {
-        $eventCount = $this->getEventCount();
-
+        $userCount = $this->getUserCount();
         return [
-            'event_id'  => $this->faker->numberBetween(1, $eventCount),
+            'user_id'   => $this->faker->numberBetween(1, $userCount),
             'url'       => $this->faker->imageUrl(640, 480),
             'extension' => 'jpg',
             'size'      => $this->faker->numberBetween(1000, 1000000),

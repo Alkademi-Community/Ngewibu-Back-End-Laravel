@@ -27,4 +27,6 @@ Route::prefix('profile')
      ->controller(ProfileController::class)
      ->group(function (){
       Route::get('/', 'show');
+
+      Route::post('/update', 'update');
 });

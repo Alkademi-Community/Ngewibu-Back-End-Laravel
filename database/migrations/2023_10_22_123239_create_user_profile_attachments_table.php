@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('event_attachments', function (Blueprint $table) {
+        Schema::create('user_profile_attachments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('event_id')
-                  ->constrained('events')
+            $table->foreignId('user_id')
+                  ->constrained('users')
                   ->cascadeOnDelete();
             $table->text('url');
             $table->string('extension');
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('event_attachments');
+        Schema::dropIfExists('user_profile_attachments');
     }
 };
