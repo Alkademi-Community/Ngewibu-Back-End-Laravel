@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,3 +30,9 @@ Route::prefix('profile')
 
       Route::post('/update', 'update');
 });
+
+Route::prefix('events')
+     ->controller(EventController::class)
+     ->group(function (){
+          Route::get('/', 'index');
+     });
