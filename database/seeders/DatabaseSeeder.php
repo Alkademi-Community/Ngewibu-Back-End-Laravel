@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             CommentSeeder::class,
             EventLikeSeeder::class,
             EventAttachmentSeeder::class,
+            UserProfileAttachmentSeeder::class,
 
         ]);
         // \App\Models\User::factory(10)->create();
