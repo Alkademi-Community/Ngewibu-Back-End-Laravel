@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Enums\EventStatusType;
 use App\Models\Event;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -25,7 +26,7 @@ class EventService
      *
      * @return \Illuminate\Pagination\LengthAwarePaginator
      */
-    public function getAllEvents(int $paginate = 4): LengthAwarePaginator
+    public function getAllEvents(int $paginate = 4, bool $isVerifying = false): LengthAwarePaginator
     {
         $withRelationships = [
             'author:id,username', 
@@ -38,6 +39,12 @@ class EventService
 
         return $this->query()
                     ->withoutTrashed()
+                    ->when($isVerifying, function ($query) {
+                        return $query->where('lu_event_status_id', EventStatusType::Verifying);
+                    })
+                    ->when(!$isVerifying, function ($query) {
+                        return $query->where('lu_event_status_id', '!=', EventStatusType::Verifying);
+                    })
                     ->with($withRelationships)
                     ->latest()
                     ->paginate($paginate);
